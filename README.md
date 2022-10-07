@@ -10,3 +10,5 @@ AIO Hadoop Build
 - Flume
 - Tez
 - Zeppelin
+- ODBC
+- JDBC
