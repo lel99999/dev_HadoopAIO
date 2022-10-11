@@ -48,6 +48,7 @@ RUN echo '{ "allow_root": true }' > /root/.bowerrc
 
 #ENV ZEPPELIN_PORT 8080
 ENV ZEPPELIN_PORT 8989
+ENV ZEPPELIN_ADDR="0.0.0.0"
 EXPOSE $ZEPPELIN_PORT
 
 ENV ZEPPELIN_HOME /usr/zeppelin/zeppelin-${ZEPPELIN_VERSION}-bin-all
