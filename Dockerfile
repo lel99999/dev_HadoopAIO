@@ -37,7 +37,6 @@ RUN echo "SPARK_LOCAL_IP=0.0.0.0" >> ${SPARK_HOME}/conf/spark-env.sh
 #COPY spark-defaults.conf ${SPARK_HOME}/conf/
 
 
-
 ##########################################
 # Zeppelin
 ##########################################
@@ -67,7 +66,7 @@ WORKDIR /work
 ENTRYPOINT  /usr/local/spark/sbin/start-history-server.sh; $ZEPPELIN_HOME/bin/zeppelin-daemon.sh start  && bash
 
 ##########################################
-# H2O.ai
+# H2O.ai & Sparkling Water
 ##########################################
 
 # Fetch h2o latest_stable
@@ -104,6 +103,16 @@ RUN \
 # Define the working directory
 #WORKDIR \
 #  /home/h2o
+
+# Get Sparkling Water
+RUN \
+  cd /opt && \
+  wget https://s3.amazonaws.com/h2o-release/sparkling-water/spark-2.4/3.38.0.1-1-2.4/sparkling-water-3.38.0.1-1-2.4.zip && \
+  unzip sparkling-water-3.38.0.1-1-2.4.zip && \
+  chown h2o -R sparkling-water*
+# unzip sparkling-water-3.38.0.1-1-2.4.zip && \
+# cd sparkling-water-3.38.0.1-1-2.4 && \
+# bin/sparkling-shell --conf "spark.executory.memory=1g"
 
 EXPOSE 54321
 EXPOSE 54322
